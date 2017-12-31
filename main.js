@@ -40,10 +40,12 @@ function getSecondHighestVal(v1, v2, v3)
 
 // Attacker uses 3 dice, Defender uses 2 dice
 
-var NUM_OF_OUTCOMES__5_DICE_TOTAL = 7776; // 6^5 (3+2=5 dice)
-var NUM_OF_OUTCOMES__4_DICE_TOTAL = 1296; // 6^4 (2+2=4 or 3+1=4 dice)
-var NUM_OF_OUTCOMES__3_DICE_TOTAL = 216;  // 6^3 (2+1=3 dice)
-var NUM_OF_OUTCOMES__2_DICE_TOTAL = 36;   // 6^2 (1+1=2 dice)
+var NUM_OF_OUTCOMES__8_DICE_TOTAL = 1679616; //6^8 ( (3+1)*2 = 4 dice in two throws)
+var NUM_OF_OUTCOMES__6_DICE_TOTAL = 46656;   //6^6 ( (2+1)*2 = 3 dice in two throws)
+var NUM_OF_OUTCOMES__5_DICE_TOTAL = 7776;    // 6^5 (3+2=5 dice)
+var NUM_OF_OUTCOMES__4_DICE_TOTAL = 1296;    // 6^4 (2+2=4 or 3+1=4 dice or (1+1)*2 = 2 dice in two throws)
+var NUM_OF_OUTCOMES__3_DICE_TOTAL = 216;     // 6^3 (2+1=3 dice)
+var NUM_OF_OUTCOMES__2_DICE_TOTAL = 36;      // 6^2 (1+1=2 dice)
 
 var num_of_times_attacker_loses_0__attacker_3_dice_defender_2_dice = 0;
 var num_of_times_defender_loses_0__attacker_3_dice_defender_2_dice = 0;
@@ -214,14 +216,30 @@ for (var d1 = 1; d1 <= 6; d1++) {
 	}
 }
 
-var defender_wins__attacker_3_dice_defender_1_dice_str = num_of_times_attacker_loses_1__attacker_3_dice_defender_1_dice+"/"+NUM_OF_OUTCOMES__4_DICE_TOTAL+"="+ ((num_of_times_attacker_loses_1__attacker_3_dice_defender_1_dice / NUM_OF_OUTCOMES__4_DICE_TOTAL) * 100).toFixed(2) +"%";
-var attacker_wins__attacker_3_dice_defender_1_dice_str = num_of_times_defender_loses_1__attacker_3_dice_defender_1_dice+"/"+NUM_OF_OUTCOMES__4_DICE_TOTAL+"="+ ((num_of_times_defender_loses_1__attacker_3_dice_defender_1_dice / NUM_OF_OUTCOMES__4_DICE_TOTAL) * 100).toFixed(2) +"%";
+var defender_wins__attacker_3_dice_defender_1_dice_dec = num_of_times_attacker_loses_1__attacker_3_dice_defender_1_dice / NUM_OF_OUTCOMES__4_DICE_TOTAL;
+var attacker_wins__attacker_3_dice_defender_1_dice_dec = num_of_times_defender_loses_1__attacker_3_dice_defender_1_dice / NUM_OF_OUTCOMES__4_DICE_TOTAL;
 
-var defender_wins__attacker_2_dice_defender_1_dice_str = num_of_times_attacker_loses_1__attacker_2_dice_defender_1_dice+"/"+NUM_OF_OUTCOMES__3_DICE_TOTAL+"="+ ((num_of_times_attacker_loses_1__attacker_2_dice_defender_1_dice / NUM_OF_OUTCOMES__3_DICE_TOTAL) * 100).toFixed(2) +"%";
-var attacker_wins__attacker_2_dice_defender_1_dice_str = num_of_times_defender_loses_1__attacker_2_dice_defender_1_dice+"/"+NUM_OF_OUTCOMES__3_DICE_TOTAL+"="+ ((num_of_times_defender_loses_1__attacker_2_dice_defender_1_dice / NUM_OF_OUTCOMES__3_DICE_TOTAL) * 100).toFixed(2) +"%";
+var defender_wins__attacker_2_dice_defender_1_dice_dec = num_of_times_attacker_loses_1__attacker_2_dice_defender_1_dice / NUM_OF_OUTCOMES__3_DICE_TOTAL;
+var attacker_wins__attacker_2_dice_defender_1_dice_dec = num_of_times_defender_loses_1__attacker_2_dice_defender_1_dice / NUM_OF_OUTCOMES__3_DICE_TOTAL;
 
-var defender_wins__attacker_1_dice_defender_1_dice_str = num_of_times_attacker_loses_1__attacker_1_dice_defender_1_dice+"/"+NUM_OF_OUTCOMES__2_DICE_TOTAL+"="+ ((num_of_times_attacker_loses_1__attacker_1_dice_defender_1_dice / NUM_OF_OUTCOMES__2_DICE_TOTAL) * 100).toFixed(2) +"%";
-var attacker_wins__attacker_1_dice_defender_1_dice_str = num_of_times_defender_loses_1__attacker_1_dice_defender_1_dice+"/"+NUM_OF_OUTCOMES__2_DICE_TOTAL+"="+ ((num_of_times_defender_loses_1__attacker_1_dice_defender_1_dice / NUM_OF_OUTCOMES__2_DICE_TOTAL) * 100).toFixed(2) +"%";
+var defender_wins__attacker_1_dice_defender_1_dice_dec = num_of_times_attacker_loses_1__attacker_1_dice_defender_1_dice / NUM_OF_OUTCOMES__2_DICE_TOTAL;
+var attacker_wins__attacker_1_dice_defender_1_dice_dec = num_of_times_defender_loses_1__attacker_1_dice_defender_1_dice / NUM_OF_OUTCOMES__2_DICE_TOTAL;
+
+
+
+var defender_wins__attacker_1_dice_defender_2_dice_dec = num_of_times_attacker_loses_1__attacker_1_dice_defender_2_dice / NUM_OF_OUTCOMES__3_DICE_TOTAL;
+var attacker_wins__attacker_1_dice_defender_2_dice_dec = num_of_times_defender_loses_1__attacker_1_dice_defender_2_dice / NUM_OF_OUTCOMES__3_DICE_TOTAL;
+
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+var defender_wins__attacker_3_dice_defender_1_dice_str = num_of_times_attacker_loses_1__attacker_3_dice_defender_1_dice+"/"+NUM_OF_OUTCOMES__4_DICE_TOTAL+"="+ (defender_wins__attacker_3_dice_defender_1_dice_dec * 100).toFixed(2) +"%";
+var attacker_wins__attacker_3_dice_defender_1_dice_str = num_of_times_defender_loses_1__attacker_3_dice_defender_1_dice+"/"+NUM_OF_OUTCOMES__4_DICE_TOTAL+"="+ (attacker_wins__attacker_3_dice_defender_1_dice_dec * 100).toFixed(2) +"%";
+
+var defender_wins__attacker_2_dice_defender_1_dice_str = num_of_times_attacker_loses_1__attacker_2_dice_defender_1_dice+"/"+NUM_OF_OUTCOMES__3_DICE_TOTAL+"="+ (defender_wins__attacker_2_dice_defender_1_dice_dec * 100).toFixed(2) +"%";
+var attacker_wins__attacker_2_dice_defender_1_dice_str = num_of_times_defender_loses_1__attacker_2_dice_defender_1_dice+"/"+NUM_OF_OUTCOMES__3_DICE_TOTAL+"="+ (attacker_wins__attacker_2_dice_defender_1_dice_dec * 100).toFixed(2) +"%";
+
+var defender_wins__attacker_1_dice_defender_1_dice_str = num_of_times_attacker_loses_1__attacker_1_dice_defender_1_dice+"/"+NUM_OF_OUTCOMES__2_DICE_TOTAL+"="+ (defender_wins__attacker_1_dice_defender_1_dice_dec * 100).toFixed(2) +"%";
+var attacker_wins__attacker_1_dice_defender_1_dice_str = num_of_times_defender_loses_1__attacker_1_dice_defender_1_dice+"/"+NUM_OF_OUTCOMES__2_DICE_TOTAL+"="+ (attacker_wins__attacker_1_dice_defender_1_dice_dec * 100).toFixed(2) +"%";
 
 
 
@@ -234,8 +252,26 @@ var defender_wins__attacker_2_dice_defender_2_dice_str = num_of_times_attacker_l
 var attacker_wins__attacker_2_dice_defender_2_dice_str = num_of_times_defender_loses_2__attacker_2_dice_defender_2_dice+"/"+NUM_OF_OUTCOMES__4_DICE_TOTAL+"="+ ((num_of_times_defender_loses_2__attacker_2_dice_defender_2_dice / NUM_OF_OUTCOMES__4_DICE_TOTAL) * 100).toFixed(2) +"%";
 var both_wins__attacker_2_dice_defender_2_dice_str     = num_of_times_attacker_loses_1__attacker_2_dice_defender_2_dice+"/"+NUM_OF_OUTCOMES__4_DICE_TOTAL+"="+ ((num_of_times_attacker_loses_1__attacker_2_dice_defender_2_dice / NUM_OF_OUTCOMES__4_DICE_TOTAL) * 100).toFixed(2) +"%";
 
-var defender_wins__attacker_1_dice_defender_2_dice_str = num_of_times_attacker_loses_1__attacker_1_dice_defender_2_dice+"/"+NUM_OF_OUTCOMES__3_DICE_TOTAL+"="+ ((num_of_times_attacker_loses_1__attacker_1_dice_defender_2_dice / NUM_OF_OUTCOMES__3_DICE_TOTAL) * 100).toFixed(2) +"%";
-var attacker_wins__attacker_1_dice_defender_2_dice_str = num_of_times_defender_loses_1__attacker_1_dice_defender_2_dice+"/"+NUM_OF_OUTCOMES__3_DICE_TOTAL+"="+ ((num_of_times_defender_loses_1__attacker_1_dice_defender_2_dice / NUM_OF_OUTCOMES__3_DICE_TOTAL) * 100).toFixed(2) +"%";
+var defender_wins__attacker_1_dice_defender_2_dice_str = num_of_times_attacker_loses_1__attacker_1_dice_defender_2_dice+"/"+NUM_OF_OUTCOMES__3_DICE_TOTAL+"="+ (defender_wins__attacker_1_dice_defender_2_dice_dec * 100).toFixed(2) +"%";
+var attacker_wins__attacker_1_dice_defender_2_dice_str = num_of_times_defender_loses_1__attacker_1_dice_defender_2_dice+"/"+NUM_OF_OUTCOMES__3_DICE_TOTAL+"="+ (attacker_wins__attacker_1_dice_defender_2_dice_dec * 100).toFixed(2) +"%";
+
+
+
+var defender_wins__attacker_3_dice_defender_1_dice_2_throws_str =     defender_wins__attacker_3_dice_defender_1_dice_dec.toFixed(2)+"*"+defender_wins__attacker_3_dice_defender_1_dice_dec.toFixed(2)+"="+ (defender_wins__attacker_3_dice_defender_1_dice_dec * defender_wins__attacker_3_dice_defender_1_dice_dec * 100).toFixed(2) +"%";
+var attacker_wins__attacker_3_dice_defender_1_dice_2_throws_str =     attacker_wins__attacker_3_dice_defender_1_dice_dec.toFixed(2)+"*"+attacker_wins__attacker_3_dice_defender_1_dice_dec.toFixed(2)+"="+ (attacker_wins__attacker_3_dice_defender_1_dice_dec * attacker_wins__attacker_3_dice_defender_1_dice_dec * 100).toFixed(2) +"%";
+var both_wins__attacker_3_dice_defender_1_dice_2_throws_str     = "("+defender_wins__attacker_2_dice_defender_1_dice_dec.toFixed(2)+"*"+attacker_wins__attacker_3_dice_defender_1_dice_dec.toFixed(2)+")*2="+ (defender_wins__attacker_3_dice_defender_1_dice_dec * attacker_wins__attacker_3_dice_defender_1_dice_dec * 2 * 100).toFixed(2) +"%";
+
+var defender_wins__attacker_2_dice_defender_1_dice_2_throws_str =     defender_wins__attacker_2_dice_defender_1_dice_dec.toFixed(2)+"*"+defender_wins__attacker_2_dice_defender_1_dice_dec.toFixed(2)+"="+ (defender_wins__attacker_2_dice_defender_1_dice_dec * defender_wins__attacker_2_dice_defender_1_dice_dec * 100).toFixed(2) +"%";
+var attacker_wins__attacker_2_dice_defender_1_dice_2_throws_str =     attacker_wins__attacker_2_dice_defender_1_dice_dec.toFixed(2)+"*"+attacker_wins__attacker_2_dice_defender_1_dice_dec.toFixed(2)+"="+ (attacker_wins__attacker_2_dice_defender_1_dice_dec * attacker_wins__attacker_2_dice_defender_1_dice_dec * 100).toFixed(2) +"%";
+var both_wins__attacker_2_dice_defender_1_dice_2_throws_str     = "("+defender_wins__attacker_2_dice_defender_1_dice_dec.toFixed(2)+"*"+attacker_wins__attacker_2_dice_defender_1_dice_dec.toFixed(2)+")*2="+ (defender_wins__attacker_2_dice_defender_1_dice_dec * attacker_wins__attacker_2_dice_defender_1_dice_dec * 2 * 100).toFixed(2) +"%";
+
+var defender_wins__attacker_1_dice_defender_1_dice_2_throws_str =     defender_wins__attacker_1_dice_defender_1_dice_dec.toFixed(2)+"*"+defender_wins__attacker_1_dice_defender_1_dice_dec.toFixed(2)+"="+ (defender_wins__attacker_1_dice_defender_1_dice_dec * defender_wins__attacker_1_dice_defender_1_dice_dec * 100).toFixed(2) +"%";
+var attacker_wins__attacker_1_dice_defender_1_dice_2_throws_str =     attacker_wins__attacker_1_dice_defender_1_dice_dec.toFixed(2)+"*"+attacker_wins__attacker_1_dice_defender_1_dice_dec.toFixed(2)+"="+ (attacker_wins__attacker_1_dice_defender_1_dice_dec * attacker_wins__attacker_1_dice_defender_1_dice_dec * 100).toFixed(2) +"%";
+var both_wins__attacker_1_dice_defender_1_dice_2_throws_str     = "("+defender_wins__attacker_1_dice_defender_1_dice_dec.toFixed(2)+"*"+attacker_wins__attacker_1_dice_defender_1_dice_dec.toFixed(2)+")*2="+ (defender_wins__attacker_1_dice_defender_1_dice_dec * attacker_wins__attacker_1_dice_defender_1_dice_dec * 2 * 100).toFixed(2) +"%";
+
+var defender_wins__attacker_1_dice_defender_2_dice_2_throws_str =     defender_wins__attacker_1_dice_defender_2_dice_dec.toFixed(2)+"*"+defender_wins__attacker_1_dice_defender_2_dice_dec.toFixed(2)+"="+ (defender_wins__attacker_1_dice_defender_2_dice_dec * defender_wins__attacker_1_dice_defender_2_dice_dec * 100).toFixed(2) +"%";
+var attacker_wins__attacker_1_dice_defender_2_dice_2_throws_str =     attacker_wins__attacker_1_dice_defender_2_dice_dec.toFixed(2)+"*"+attacker_wins__attacker_1_dice_defender_2_dice_dec.toFixed(2)+"="+ (attacker_wins__attacker_1_dice_defender_2_dice_dec * attacker_wins__attacker_1_dice_defender_2_dice_dec * 100).toFixed(2) +"%";
+var both_wins__attacker_1_dice_defender_2_dice_2_throws_str     = "("+defender_wins__attacker_1_dice_defender_2_dice_dec.toFixed(2)+"*"+attacker_wins__attacker_1_dice_defender_2_dice_dec.toFixed(2)+")*2="+ (defender_wins__attacker_1_dice_defender_2_dice_dec * attacker_wins__attacker_1_dice_defender_2_dice_dec * 2 * 100).toFixed(2) +"%";
 
 
 console.log("ATTACKER 1 DIE, DEFENDER 1 DIE");
@@ -263,3 +299,24 @@ console.log("\nATTACKER 3 DICE, DEFENDER 2 DICE");
 console.log("Defender Wins: "+defender_wins__attacker_3_dice_defender_2_dice_str);
 console.log("Attacker Wins: "+attacker_wins__attacker_3_dice_defender_2_dice_str);
 console.log("Both Wins:     "+both_wins__attacker_3_dice_defender_2_dice_str);
+
+console.log("\nATTACKER 1 DIE, DEFENDER 1 DIE (2 throws)");
+console.log("Defender Wins: "+defender_wins__attacker_1_dice_defender_1_dice_2_throws_str);
+console.log("Attacker Wins: "+attacker_wins__attacker_1_dice_defender_1_dice_2_throws_str);
+console.log("Both Wins:     "+both_wins__attacker_1_dice_defender_1_dice_2_throws_str);
+
+console.log("\nATTACKER 2 DICE, DEFENDER 1 DIE (2 throws)");
+console.log("Defender Wins: "+defender_wins__attacker_2_dice_defender_1_dice_2_throws_str);
+console.log("Attacker Wins: "+attacker_wins__attacker_2_dice_defender_1_dice_2_throws_str);
+console.log("Both Wins:     "+both_wins__attacker_2_dice_defender_1_dice_2_throws_str);
+
+console.log("\nATTACKER 3 DICE, DEFENDER 1 DIE (2 throws)");
+console.log("Defender Wins: "+defender_wins__attacker_3_dice_defender_1_dice_2_throws_str);
+console.log("Attacker Wins: "+attacker_wins__attacker_3_dice_defender_1_dice_2_throws_str);
+console.log("Both Wins:     "+both_wins__attacker_3_dice_defender_1_dice_2_throws_str);
+
+console.log("\nATTACKER 1 DIE, DEFENDER 2 DICE (2 throws)");
+console.log("Defender Wins: "+defender_wins__attacker_1_dice_defender_2_dice_2_throws_str);
+console.log("Attacker Wins: "+attacker_wins__attacker_1_dice_defender_2_dice_2_throws_str);
+console.log("Both Wins:     "+both_wins__attacker_1_dice_defender_2_dice_2_throws_str);
+
